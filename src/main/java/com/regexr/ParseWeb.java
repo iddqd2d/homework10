@@ -23,7 +23,6 @@ public class ParseWeb {
     private Document doc;
 
     public ParseWeb(String url) {
-
         try {
             doc = Jsoup.connect(url).get();
         } catch (IOException e) {
