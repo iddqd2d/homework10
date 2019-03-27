@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_201" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="java.util.HashMap">
+    <void method="put">
+     <object class="java.util.ArrayList">
+      <void method="add">
+       <object class="java.util.HashSet">
+        <void method="add">
+         <int>4</int>
+        </void>
+       </object>
+      </void>
+     </object>
+     <string>com.regexr.XmlConverter</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
