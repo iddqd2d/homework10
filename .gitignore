@@ -7,5 +7,6 @@
 *.iws
 *.xml
 *.class
+*.properties
 out/
 target/

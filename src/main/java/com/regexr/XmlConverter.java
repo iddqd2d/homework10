@@ -11,15 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
-
-
+import org.apache.log4j.Logger;
 
 public class XmlConverter {
-    private static final Logger LOG = Logger.getLogger(XmlConverter.class.getName());
+    private static final Logger LOG = Logger.getLogger(XmlConverter.class);
 
     public void xmlObjectInit() {
-        List<Map<List<Set<Integer>>, String>> list = (ArrayList)add(new ArrayList(),
+        List<Map<List<Set<Integer>>, String>> list = (ArrayList) add(new ArrayList(),
                 add(new HashMap(),
                         (add(new ArrayList(),
                                 add(new HashSet(), Integer.BYTES)))
@@ -40,10 +38,8 @@ public class XmlConverter {
 
 
     public void objToXmlFile(List list) {
-        try (FileOutputStream file = new FileOutputStream("obj.myxml")) {
-            XMLEncoder xmlEncoder = new XMLEncoder(file);
+        try (XMLEncoder xmlEncoder = new XMLEncoder(new FileOutputStream("obj.myxml"))) {
             xmlEncoder.writeObject(list);
-            xmlEncoder.close();
         } catch (IOException e) {
             LOG.info(e.getMessage());
         }

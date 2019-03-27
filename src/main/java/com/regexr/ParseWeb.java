@@ -5,13 +5,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.log4j.Logger;
 
 
 public class ParseWeb {
-    private static final Logger LOG = Logger.getLogger(ParseWeb.class.getName());
+    private static final Logger LOG = Logger.getLogger(ParseWeb.class);
     private static final String IP_ADDRESS_PATTERN = "((2[0-5][0-5]|1?[0-9]?[0-9])\\.){3}(2[0-5][0-5]|1?[0-9]?[0-9])";
     private static final String EMAIL_PATTERN = "(\\b[\\w.-]+@[-.\\w]+\\b)";
     private static final String NUM_PATTERN = "\\+?(\\d{2})?(0\\d{9})";
@@ -28,11 +28,11 @@ public class ParseWeb {
         } catch (IOException e) {
             LOG.info("Connection error");
         }
-        String content = clearStr(doc.html().toString());
-        numbers = seachReg(content, NUM_PATTERN);
-        email = seachReg(content, EMAIL_PATTERN);
-        ip = seachReg(content, IP_ADDRESS_PATTERN);
-        date = seachReg(content, DATE_PATTERN);
+        String content = clearString(doc.html().toString());
+        numbers = searchReg(content, NUM_PATTERN);
+        email = searchReg(content, EMAIL_PATTERN);
+        ip = searchReg(content, IP_ADDRESS_PATTERN);
+        date = searchReg(content, DATE_PATTERN);
     }
 
     public String getIp() {
@@ -51,17 +51,17 @@ public class ParseWeb {
         return date;
     }
 
-    private String seachReg(String str, String ptrn) {
+    private String searchReg(String context, String regex) {
         StringBuilder stringBuilder = new StringBuilder();
-        Pattern p = Pattern.compile(ptrn);
-        Matcher temp = p.matcher(str);
-        while (temp.find()) {
-            stringBuilder.append("\n" + temp.group());
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(context);
+        while (matcher.find()) {
+            stringBuilder.append("\n" + matcher.group());
         }
         return stringBuilder.toString();
     }
 
-    private String clearStr(String str) {
-        return str.replaceAll("\\-|\\s|\\(|\\)", "");
+    private String clearString(String string) {
+        return string.replaceAll("\\-|\\s|\\(|\\)", "");
     }
 }
