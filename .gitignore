@@ -4,9 +4,7 @@
 *.iml
 .idea/
 *.ipr
-*.iws
 *.xml
-*.class
 *.properties
 out/
 target/

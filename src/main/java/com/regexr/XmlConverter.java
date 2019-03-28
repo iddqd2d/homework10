@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 public class XmlConverter {
     private static final Logger LOG = Logger.getLogger(XmlConverter.class);
+    private static final String RESOURCES_PATH = "./src/main/resources/";
 
     public void xmlObjectInit() {
         List<Map<List<Set<Integer>>, String>> list = (ArrayList) add(new ArrayList(),
@@ -36,12 +37,11 @@ public class XmlConverter {
         return obj;
     }
 
-
     public void objToXmlFile(List list) {
-        try (XMLEncoder xmlEncoder = new XMLEncoder(new FileOutputStream("obj.myxml"))) {
+        try (XMLEncoder xmlEncoder = new XMLEncoder(new FileOutputStream(RESOURCES_PATH + "obj.myxml"))) {
             xmlEncoder.writeObject(list);
         } catch (IOException e) {
-            LOG.info(e.getMessage());
+            LOG.error(e.getMessage());
         }
     }
 }
